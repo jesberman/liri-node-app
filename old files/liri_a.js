@@ -1,6 +1,6 @@
-//console.log(process.argv);
+console.log(process.argv);
 
-//console.log("Wheatley");
+console.log("Wheatley");
 
 require("dotenv").config();
 var keys = require("./keys.js");
@@ -39,33 +39,13 @@ if (process.argv[2] === "my-tweets") {
 
 else if (process.argv[2] === "spotify-this-song") {
     var song = process.argv.slice(3).join(" ");
-    //console.log(song);
+    console.log(song);
     spotify.search({ type: 'track', limit: 1, query: song}, function(err, data) {
         if (err) {
           return console.log('Error occurred: ' + err);
         }
-       //console.log(data.tracks.href)
-       console.log(" ");
-
-       console.log("Artist's Name: ");
+       console.log(data.tracks.href)
         console.log(data.tracks.items[0].artists[0].name);
-        console.log(" ");
-
-        console.log("Song Name: ")
-        console.log(data.tracks.items[0].name);
-        console.log(" ");
-
-        console.log("Album Name: ");
-        console.log(data.tracks.items[0].album.name);
-        console.log(" ");
-
-        console.log("Link to Song: ")
-        console.log(data.tracks.items[0].external_urls.spotify);
-        console.log(" ");
-
-
-       // console.log(data.tracks.items[0]);
-
 
         //console.log(JSON.stringify(data));
      // console.log(data); 
