@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/jesberman/liri-node-app#readme",
   "dependencies": {
+    "api-console-cli": "^1.0.2",
     "dotenv": "^6.0.0",
     "node-spotify-api": "^1.0.7",
     "request": "^2.87.0",
