@@ -20,7 +20,6 @@ var fs = require('fs');
 //creates a variable called spotify and sets it equal to a new instance of the spotify keys and secrets in the keys.js file
 var spotify = new Spotify(
     keys.spotify
-    
 );
 
 //creates a variable called client and sets it equal to a new instance of the twitter keys and secrets in the keys.js file
@@ -94,18 +93,19 @@ else if (process.argv[2] === "spotify-this-song") {
 
 else if (process.argv[2] === "do-what-it-says") {
 
-    fs.readFile("random.txt", "utf8", function(error, data) {
+    fs.readFile("random1.txt", "utf8", function(error, data) {
+        var doThis = JSON.stringify(data);
+    });
 
-        var dataArray = data.split(",");
+    fs.readFile("random2.txt", "utf8", function(error, data) {
 
         // If the code experiences any errors it will log the error to the console.
         if (error) {
           return console.log("Error: " +error);
         }
-      //console.log("Data: " + data);
+      console.log("Data: " + data);
     
-      var song = (data[1]);
-      //var song = JSON.stringify(data);
+      var song = JSON.stringify(data);
 
       //tells the code to search the spotify variable for the parameters "type", "limit", and "query"
       spotify.search({ type: 'track', limit: 1, query: song}, function(err, data) {

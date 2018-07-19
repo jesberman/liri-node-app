@@ -1,6 +1,4 @@
 
-
-
 //connects liri.js to the .env file in the main folder
 require("dotenv").config();
 
@@ -16,11 +14,9 @@ var Twitter = require('twitter');
 //creates a variable called var request and connects it to the "node-spotify-api" file in the "node_modules" file
 var Spotify = require('node-spotify-api');
  
-var fs = require('fs');
 //creates a variable called spotify and sets it equal to a new instance of the spotify keys and secrets in the keys.js file
 var spotify = new Spotify(
     keys.spotify
-    
 );
 
 //creates a variable called client and sets it equal to a new instance of the twitter keys and secrets in the keys.js file
@@ -93,64 +89,27 @@ else if (process.argv[2] === "spotify-this-song") {
 
 
 else if (process.argv[2] === "do-what-it-says") {
-
-    fs.readFile("random.txt", "utf8", function(error, data) {
-
-        var dataArray = data.split(",");
-
-        // If the code experiences any errors it will log the error to the console.
-        if (error) {
-          return console.log("Error: " +error);
-        }
-      //console.log("Data: " + data);
     
-      var song = (data[1]);
-      //var song = JSON.stringify(data);
+    
+    
+    
+    var command = require("./random.txt");
 
-      //tells the code to search the spotify variable for the parameters "type", "limit", and "query"
-      spotify.search({ type: 'track', limit: 1, query: song}, function(err, data) {
+    
+    console.log(command);
 
-        //begins an if statments in the event of an error response 
-          if (err) {
-            //returns a console.log that displays the type of error which occured if one did
-            return console.log('Error occurred: ' + err);
-          }
-          //creates blank space between the previous response and the next one
-          console.log(" ");
-  
-          //prints that artist's name
-          console.log("Artist's Name: ");
-          console.log(data.tracks.items[0].artists[0].name);
-          console.log(" ");
-  
-          //prints that song name
-          console.log("Song Name: ")
-          console.log(data.tracks.items[0].name);
-          console.log(" ");
-  
-          //prints that album name
-          console.log("Album Name: ");
-          console.log(data.tracks.items[0].album.name);
-          console.log(" ");
-  
-          //prints a link to the song on spotify        
-          console.log("Link to Song: ")
-          console.log(data.tracks.items[0].external_urls.spotify);
-          console.log(" ");
-  
-        });
-  
+
+
+    
+
     //var command = " ";
     //$(command).val("random.txt");
     //console.log(command);
 
-
-
-
-});
-
-
 }
+
+
+
 
 
 
@@ -162,7 +121,9 @@ else if (process.argv[2] === "movie-this") {
     var film = process.argv.slice(3).join(" ");
     //sends an api request to the omdb website that specifies the film variable that the user entered.  Also begins a function
     request('http://www.omdbapi.com/?apikey=trilogy&t='+film, function (error, response, body) {
-      
+        if (err) {
+            request('http://www.omdbapi.com/?apikey=trilogy&t=Mr.+Nobody', function (error, response, body) {
+            }
     // Print the error if one occurred
       console.log('error:', error); 
 
@@ -173,7 +134,7 @@ else if (process.argv[2] === "movie-this") {
        console.log(" ");
 
        //prints the title of the movie
-        console.log("Movie Title: ");
+        console.log("Movie Title: ")
         console.log(JSON.parse(body).Title);
         console.log(" ");
 
