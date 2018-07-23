@@ -146,7 +146,7 @@ else if (process.argv[2] === "movie-this") {
     movie_command();
 }
 else if (process.argv[2] === "do-what-it-says") {
-    fs.readFile("random2.txt", "utf8", function (error, data) {
+    fs.readFile("random.txt", "utf8", function (error, data) {
         var dataArray = data.split(",");
         // If the code experiences any errors it will log the error to the console.
         if (error) {
@@ -264,3 +264,12 @@ else if (process.argv[2] === "do-what-it-says") {
         }
     });
 }
+
+
+
+
+
+
+
+
+
