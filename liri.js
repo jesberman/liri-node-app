@@ -45,6 +45,9 @@ function movie_command() {
     //creates a variable called film that equals everything in a user generated array from the 
     //fourth position to the end of the array.  Also, it "joins" the different elements of the array together with an empty space
     var film = process.argv.slice(3).join(" ");
+    if (film === ("")) {
+        film = ("mr nobody");
+    }
     //sends an api request to the omdb website that specifies the film variable that the user entered.  Also begins a function
     request('http://www.omdbapi.com/?apikey=trilogy&t=' + film, function (error, response, body) {
         // Print the error if one occurred
@@ -65,18 +68,13 @@ function movie_command() {
         console.log(" ");
 
         //prints the IMDB score the film received
-        console.log("IMDB Score: ")
-        console.log(JSON.parse(body).Ratings[0]);
+        console.log(JSON.parse(body).Ratings[0].Source);
+        console.log(JSON.parse(body).Ratings[0].Value);
         console.log(" ");
 
         //prints the Rotten Tomatoes score the film received
-        console.log("Rotten Tomatoes Score: ")
-        console.log(JSON.parse(body).Ratings[1]);
-        console.log(" ");
-
-        //prints the metacritic score the film received  
-        console.log("Metacritic Score: ")
-        console.log(JSON.parse(body).Ratings[2]);
+        console.log(JSON.parse(body).Ratings[1].Source);
+        console.log(JSON.parse(body).Ratings[1].Value);
         console.log(" ");
 
         //prints the name of the country the film was made in
@@ -102,6 +100,10 @@ function movie_command() {
 }
 function spotify_command() {
     var random_text = process.argv.slice(3).join(" ");
+    if (random_text === ("")) {
+        random_text = ("The Sign ace of base");
+
+    }
     //tells the code to search the spotify variable for the parameters "type", "limit", and "query"
     spotify.search({ type: 'track', limit: 1, query: random_text }, function (err, data) {
         //begins an if statments in the event of an error response 
@@ -146,7 +148,7 @@ else if (process.argv[2] === "movie-this") {
     movie_command();
 }
 else if (process.argv[2] === "do-what-it-says") {
-    fs.readFile("random2.txt", "utf8", function (error, data) {
+    fs.readFile("random1.txt", "utf8", function (error, data) {
         var dataArray = data.split(",");
         // If the code experiences any errors it will log the error to the console.
         if (error) {
